@@ -18,15 +18,16 @@ body {
 }
 
 #book {
-  width: 800px;
+  width: 1068px;
   height: 600px;
 }
 
 .page {
-  width: 400px;
+  width: 534px;
   height: 600px;
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
 }
 </style>
 </head>
@@ -40,10 +41,12 @@ body {
 </div>
 
 <script>
-$("#book").turn({
-  width: 800,
-  height: 600,
-  autoCenter: true
+$(document).ready(function() {
+  $("#book").turn({
+    width: 1068,
+    height: 600,
+    autoCenter: true
+  });
 });
 </script>
 
