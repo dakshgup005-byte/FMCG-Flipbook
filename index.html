@@ -1,1 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Flipbook</title>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/turn.min.js"></script>
+
+<style>
+body {
+  margin: 0;
+  background: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#book {
+  width: 800px;
+  height: 600px;
+}
+
+.page {
+  width: 400px;
+  height: 600px;
+  background-size: cover;
+  background-position: center;
+}
+</style>
+</head>
+
+<body>
+
+<div id="book">
+  <div class="page" style="background-image:url('images/page01.jpg')"></div>
+  <div class="page" style="background-image:url('images/page02.jpg')"></div>
+  <div class="page" style="background-image:url('images/page03.jpg')"></div>
+  <div class="page" style="background-image:url('images/page04.jpg')"></div>
+</div>
+
+<script>
+$("#book").turn({
+  width: 800,
+  height: 600,
+  autoCenter: true
+});
+</script>
+
+</body>
+</html>
 
