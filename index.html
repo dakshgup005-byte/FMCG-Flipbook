@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Dynamic Flipbook</title>
+<title>Flipbook 960x540 Cover + 1920x540 Spread</title>
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -27,7 +27,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    border: 1px solid #444; /* optional, for debugging */
+    border: 1px solid #444; /* optional for debugging */
   }
 </style>
 </head>
@@ -35,44 +35,29 @@
 
 <div id="book">
   <!-- Cover page -->
-  <div class="page" data-width="1920" data-height="1080" style="background-image:url('images/FMCG1.png')"></div>
+  <div class="page" style="width:960px; height:540px; background-image:url('images/FMCG1.png')"></div>
 
   <!-- Double-page spread -->
-  <div class="page" data-width="1920" data-height="1080" style="background-image:url('images/FMCG2.png')"></div>
-  <div class="page" data-width="1920" data-height="1080" style="background-image:url('images/FMCG3.png')"></div>
+  <div class="page" style="width:960px; height:540px; background-image:url('images/FMCG2.png')"></div>
+  <div class="page" style="width:960px; height:540px; background-image:url('images/FMCG3.png')"></div>
 </div>
 
 <script>
 $(document).ready(function() {
   var $book = $("#book");
-  var pages = $book.children();
-
-  // --- Initialize cover page ---
-  var firstPage = pages.eq(0);
-  var coverWidth = 800;
-  var coverAspect = firstPage.data("height") / firstPage.data("width");
-  var coverHeight = coverWidth * coverAspect;
-
-  $book.css({ width: coverWidth, height: coverHeight });
-
+  
+  // Initialize Turn.js with cover page size
   $book.turn({
-    width: coverWidth,
-    height: coverHeight,
+    width: 960,
+    height: 540,
     autoCenter: true,
-    pages: pages.length
+    pages: $book.children().length
   });
 
-  // --- On page turn, adjust size dynamically ---
+  // On page turn, expand to double-page spread
   $book.bind("turned", function(event, page, view) {
     if (page === 2) {  // first double-page spread
-      var leftPage = pages.eq(1);  // left page of spread
-      var pageWidth = leftPage.data("width");   // 1920
-      var pageHeight = leftPage.data("height"); // 1080
-      var totalWidth = 1920;  // 2-page spread
-      var aspect = pageHeight / pageWidth;
-      var newHeight = totalWidth * aspect;
-
-      $book.turn("size", totalWidth, newHeight);
+      $book.turn("size", 1920, 540);  // total width 1920, height 540
     }
   });
 });
@@ -80,4 +65,3 @@ $(document).ready(function() {
 
 </body>
 </html>
-
